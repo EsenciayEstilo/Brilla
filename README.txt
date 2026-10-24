@@ -1,22 +1,20 @@
 BRILLA VELAS Y AÑO VIEJO — INSTRUCCIONES DE CARGA
 
-Este ZIP está organizado con TODOS los archivos directamente en la raíz, sin una carpeta contenedora.
+Este ZIP es solo para descargar y extraer en tu computador. NO subas el ZIP ni una carpeta contenedora a GitHub.
 
-1. Extrae el ZIP en tu computador.
-2. Abre la ubicación donde quedaron index.html, README.txt y todas las imágenes juntas.
-3. Entra al repositorio actual de GitHub.
-4. Reemplaza el index.html existente con el nuevo.
-5. Carga todas las imágenes individualmente (puedes seleccionar varias a la vez) directamente en la raíz del repositorio, al mismo nivel que index.html. NO crees una carpeta llamada imágenes.
-6. Conserva exactamente los nombres de las imágenes incluidos aquí.
-7. Guarda/confirma los cambios en GitHub. No subas el ZIP ni crees otro repositorio.
+1. Extrae el ZIP. Verás index.html, README.txt y todas las imágenes al mismo nivel.
+2. En tu repositorio actual, reemplaza el index.html existente.
+3. Selecciona todas las imágenes y cárgalas directamente en la raíz del repositorio, en el mismo nivel que index.html. No crees una carpeta de imágenes.
+4. Mantén exactamente los nombres de archivo que vienen en este ZIP.
+5. Puedes cargar README.txt también, de forma individual.
+6. Confirma los cambios. No crees otro repositorio; así conservas el enlace actual.
 
-ORDEN DEL CATÁLOGO
-1) Elegir color y cantidad de paquetes de velas.
-2) Elegir caja (gratis).
-3) Elegir adhesivo (gratis).
-4) Indicar si desea portavelas; si responde sí, elegir cantidad.
-5) Elegir kits de Año Viejo para hombre o mujer y cantidades.
-6) Completar nombre y teléfono obligatorios.
-7) Añadir observaciones opcionales y confirmar por WhatsApp.
+FUNCIONAMIENTO
+- La cantidad de paquetes seleccionada identifica el color de vela elegido. La tarjeta indica claramente cuando el color está seleccionado.
+- Caja y adhesivo son personalización gratuita.
+- Puedes incluir portavelas y kits de Año Viejo.
+- Nombre completo y teléfono son obligatorios.
+- Antes de abrir WhatsApp, el botón muestra un resumen editable con productos, cantidades, precios, cajas, adhesivos, datos y total.
+- WhatsApp de destino: +57 311 746 2737.
 
-Precios configurados: velas $18.000 por paquete de 10; portavelas $15.000 por unidad; kit Año Viejo $20.000 por kit. La selección de caja y adhesivo no tiene costo adicional.
+Precios configurados: velas $18.000 por paquete de 10; portavelas $15.000 por unidad; kit Año Viejo $20.000 por kit.
