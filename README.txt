@@ -1,20 +1,14 @@
-BRILLA VELAS Y AÑO VIEJO — INSTRUCCIONES DE CARGA
+BRILLA VELAS Y ANO VIEJO — INSTRUCCIONES DE CARGA
 
-Este ZIP es solo para descargar y extraer en tu computador. NO subas el ZIP ni una carpeta contenedora a GitHub.
+Este ZIP contiene index.html, README.txt y las imagenes con nombres que coinciden con el codigo. Todos los archivos estan en la raiz del ZIP, sin carpeta de imagenes.
 
-1. Extrae el ZIP. Verás index.html, README.txt y todas las imágenes al mismo nivel.
-2. En tu repositorio actual, reemplaza el index.html existente.
-3. Selecciona todas las imágenes y cárgalas directamente en la raíz del repositorio, en el mismo nivel que index.html. No crees una carpeta de imágenes.
-4. Mantén exactamente los nombres de archivo que vienen en este ZIP.
-5. Puedes cargar README.txt también, de forma individual.
-6. Confirma los cambios. No crees otro repositorio; así conservas el enlace actual.
+PARA ACTUALIZAR EL REPOSITORIO EXISTENTE:
+1. Descomprime el ZIP en tu computador o celular.
+2. Abre la carpeta que contiene directamente index.html, README.txt y las imagenes.
+3. En el repositorio actual de GitHub, reemplaza index.html por este archivo.
+4. Carga las imagenes como archivos individuales (puedes seleccionar varias al mismo tiempo) en la misma ubicacion de index.html. No las pongas dentro de una carpeta.
+5. Mantén exactamente los nombres de archivo.
+6. No cargues el ZIP ni crees otro repositorio.
+7. Confirma los cambios y prueba el catalogo publicado.
 
-FUNCIONAMIENTO
-- La cantidad de paquetes seleccionada identifica el color de vela elegido. La tarjeta indica claramente cuando el color está seleccionado.
-- Caja y adhesivo son personalización gratuita.
-- Puedes incluir portavelas y kits de Año Viejo.
-- Nombre completo y teléfono son obligatorios.
-- Antes de abrir WhatsApp, el botón muestra un resumen editable con productos, cantidades, precios, cajas, adhesivos, datos y total.
-- WhatsApp de destino: +57 311 746 2737.
-
-Precios configurados: velas $18.000 por paquete de 10; portavelas $15.000 por unidad; kit Año Viejo $20.000 por kit.
+El catalogo permite seleccionar varios colores de velas y cantidades; las opciones elegidas quedan resaltadas. El boton de revision debe mostrar el resumen antes de abrir WhatsApp.
