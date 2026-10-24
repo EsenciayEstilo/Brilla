@@ -29,7 +29,36 @@ const stickers=[['Diseño Arcángeles','adhesivo-arcangeles.png'],['Diseño P
 function card(p){return `<article class="card" id="card-${p.id}"><img src="${img(p.image)}" alt="${p.name}" loading="lazy"><div class="card-body"><h3>${p.name}</h3><div class="price">${money(p.price)} / ${p.group==='candles'?'paquete':p.group==='kits'?'kit':'unidad'}</div><p class="details">${p.detail}</p><div class="qty"><label>Cantidad</label><div class="stepper"><button type="button" aria-label="Disminuir ${p.name}" onclick="changeQty('${p.id}',-1)">−</button><output id="qty-${p.id}">0</output><button type="button" aria-label="Aumentar ${p.name}" onclick="changeQty('${p.id}',1)">+</button></div></div></div></article>`}
 document.getElementById('candles').innerHTML=products.filter(p=>p.group==='candles').map(card).join('');document.getElementById('kits').innerHTML=products.filter(p=>p.group==='kits').map(card).join('');document.getElementById('holderArea').innerHTML=card(products.find(p=>p.id==='holder'));
 function renderOptions(list,target,prefix){document.getElementById(target).innerHTML=list.map((item,i)=>`<label class="option"><input type="checkbox" data-kind="${prefix}" value="${item[0]}" data-file="${item[1]}"><img src="${img(item[1])}" alt="${item[0]}" loading="lazy"><span>${item[0]}<br><small class="free">Personalización gratuita</small></span></label>`).join('')};renderOptions(boxes,'boxes','box');renderOptions(stickers,'stickers','sticker');
-function updateCardSelection(){products.forEach(p=>{const cardEl=document.getElementById('card-'+p.id);if(!cardEl)return;const selected=qty[p.id]>0;cardEl.classList.toggle('selected-product',selected);let label=cardEl.querySelector('.selected-label');if(selected){if(!label){label=document.createElement('div');label.className='selected-label';const body=cardEl.querySelector('.card-body');body.insertBefore(label,body.querySelector('.qty'));}label.textContent=p.group==='candles'?`✓ Color seleccionado: ${p.name.replace('Velas ','')} · ${qty[p.id]} paquete(s)`: `✓ Seleccionado: ${qty[p.id]} ${p.unit}`;}else if(label){label.remove();}})}function changeQty(id,delta){qty[id]=Math.max(0,qty[id]+delta);document.getElementById('qty-'+id).textContent=qty[id];updateCardSelection();updateTotal()}document.querySelectorAll('input[name="includeHolder"]').forEach(r=>r.addEventListener('change',e=>{const yes=e.target.value==='yes';document.getElementById('holderArea').classList.toggle('hidden',!yes);if(!yes){qty.holder=0;document.getElementById('qty-holder').textContent='0'}updateCardSelection();updateTotal()}));
+function updateCardSelection(){
+  products.forEach(p=>{
+    const cardEl=document.getElementById('card-'+p.id);
+    if(!cardEl)return;
+    const selected=Number(qty[p.id]||0)>0;
+    cardEl.classList.toggle('selected-product',selected);
+    const photo=cardEl.querySelector('img');
+    if(photo){photo.style.outline=selected?'4px solid var(--wine)':'none';photo.style.outlineOffset=selected?'-4px':'0';}
+    let label=cardEl.querySelector('.selected-label');
+    if(selected){
+      if(!label){label=document.createElement('div');label.className='selected-label';const body=cardEl.querySelector('.card-body');body.insertBefore(label,body.querySelector('.qty'));}
+      label.textContent=p.group==='candles'?`✓ Color seleccionado: ${p.name.replace('Velas ','')} · ${qty[p.id]} paquete(s)`:`✓ Seleccionado: ${qty[p.id]} ${p.unit}`;
+    }else if(label){label.remove();}
+  });
+}
+function updateTotal(){
+  const totalValue=products.reduce((sum,p)=>sum+(Number(p.price)||0)*(Number(qty[p.id])||0),0);
+  const countValue=products.reduce((sum,p)=>sum+(Number(qty[p.id])||0),0);
+  const totalEl=document.getElementById('total');const countEl=document.getElementById('count');
+  if(totalEl)totalEl.textContent=money(totalValue);
+  if(countEl)countEl.textContent=`${countValue} producto(s)/paquete(s)/kit(s) seleccionados`;
+}
+function changeQty(id,delta){
+  if(!(id in qty))qty[id]=0;
+  qty[id]=Math.max(0,(Number(qty[id])||0)+Number(delta||0));
+  const output=document.getElementById('qty-'+id);if(output)output.textContent=qty[id];
+  updateTotal();updateCardSelection();
+}
+document.querySelectorAll('input[name="includeHolder"]').forEach(r=>r.addEventListener('change',e=>{const yes=document.querySelector('input[name="includeHolder"]:checked')?.value==='yes';document.getElementById('holderArea').classList.toggle('hidden',!yes);if(!yes){qty.holder=0;const q=document.getElementById('qty-holder');if(q)q.textContent='0'}updateTotal();updateCardSelection()}));
 function updateTotal(){let total=0,count=0;products.forEach(p=>{total+=p.price*qty[p.id];count+=qty[p.id]});document.getElementById('total').textContent=money(total);document.getElementById('count').textContent=`${count} unidad(es)/paquete(s)/kit(s) seleccionados`}function checked(kind){return [...document.querySelectorAll(`input[data-kind="${kind}"]:checked`)].map(el=>el.value)}
 document.getElementById('whatsapp').addEventListener('click',()=>{const customerName=document.getElementById('customerName').value.trim();const customerPhone=document.getElementById('customerPhone').value.trim();if(!customerName){alert('Por favor, escribe tu nombre completo para continuar.');document.getElementById('customerName').focus();return}if(!customerPhone){alert('Por favor, escribe tu teléfono de contacto para continuar.');document.getElementById('customerPhone').focus();return}if(!/^[0-9+()\s-]{7,20}$/.test(customerPhone)||customerPhone.replace(/\D/g,'').length<7){alert('Verifica el teléfono: ingresa al menos 7 dígitos.');document.getElementById('customerPhone').focus();return}const selected=products.filter(p=>qty[p.id]>0);if(!selected.length){alert('Selecciona al menos un producto y su cantidad antes de confirmar.');return}const total=selected.reduce((s,p)=>s+p.price*qty[p.id],0);const lines=['¡Hola! Quiero confirmar este pedido de Brilla Velas y Año Viejo:','',`Nombre completo: ${customerName}`,`Teléfono de contacto: ${customerPhone}`,''];selected.forEach(p=>lines.push(`• ${p.name}: ${qty[p.id]} ${p.unit} x ${money(p.price)} = ${money(qty[p.id]*p.price)}`));const chosenBoxes=checked('box'),chosenStickers=checked('sticker');lines.push('',`Cajas seleccionadas (sin costo): ${chosenBoxes.length?chosenBoxes.join(', '):'No seleccioné caja'}`,`Adhesivos seleccionados (sin costo): ${chosenStickers.length?chosenStickers.join(', '):'No seleccioné adhesivo'}`,'La selección de caja y adhesivo no tiene costo adicional.');const notes=document.getElementById('notes').value.trim();if(notes)lines.push('',`Observaciones adicionales: ${notes}`);lines.push('',`TOTAL DEL PEDIDO: ${money(total)}`,'Por favor, confírmame disponibilidad y entrega.');window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(lines.join('\n'))}`,'_blank')});
+updateTotal();updateCardSelection();
 </script></body></html>
